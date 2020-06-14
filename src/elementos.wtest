@@ -1,0 +1,31 @@
+import elementos.*
+test "Test de elementos" {
+	const casa = new Hogar()
+	const huertita = new Huerta()
+	const matute = new Mascota()
+	const tesei = new Barrio()
+	
+	casa.nivelDeMugre(2)
+	casa.confort(4)
+	
+	huertita.capacidadDeProduccion(100)
+	huertita.nivelProduccion(20)
+	
+	matute.nivelDeSalud(300)
+	
+	tesei.agregar(casa)
+	tesei.agregar(huertita)
+	tesei.agregar(matute)
+	
+	assert.that(casa.esBueno())
+	assert.that(huertita.esBueno())
+	assert.that(tesei.barrioCopado())
+
+	matute.nivelDeSalud(10)
+	huertita.nivelProduccion(120)
+	
+	assert.notThat(tesei.barrioCopado())
+
+
+
+}

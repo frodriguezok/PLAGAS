@@ -1,0 +1,45 @@
+import plagas.*
+import elementos.*
+
+test "Efecto de plagas" {
+	const casa = new Hogar()
+	const cucas = new Cucarachas()
+	const garrapata = new Garrapatas()
+	const matute = new Mascota()
+	const huertita = new Huerta()
+	const dengue = new Mosquitos()
+	
+	//Prueba de cucarachas y casa
+	cucas.poblacion(15)
+	cucas.pesoPromedio(10)
+	casa.nivelDeMugre(2)
+	casa.confort(4)
+	
+	assert.equals(7.5, cucas.nivelDeDanio())
+	assert.that(cucas.transmitenEnfermedades())
+	
+	cucas.atacarA(casa)
+	assert.equals(12,cucas.pesoPromedio())
+	assert.equals(9.5, casa.nivelDeMugre())
+	
+	//Prueba de mascota con garrapatas
+	matute.nivelDeSalud(300)
+	garrapata.poblacion(30)
+	
+	assert.equals(60, garrapata.nivelDeDanio())
+	
+	garrapata.atacarA(matute)
+	
+	assert.equals(36, garrapata.poblacion())
+	assert.equals(240,matute.nivelDeSalud())
+	
+	//Prueba de mosquitos contra una huerta
+	huertita.capacidadDeProduccion(100)
+	huertita.nivelProduccion(20)
+	dengue.poblacion(300)
+	assert.equals(300,dengue.nivelDeDanio())
+	assert.that(dengue.transmitenEnfermedades())
+	dengue.atacarA(huertita)
+	assert.equals(60, huertita.capacidadDeProduccion())
+	assert.equals(330,dengue.poblacion())
+}
